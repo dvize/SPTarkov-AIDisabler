@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup>
+        <RootNamespace>Nexus.AIDisabler</RootNamespace>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <OutputType>Library</OutputType>
+        <ProjectGuid>{0541DA8E-AD85-43EE-A9CF-A0053EB4DDAD}</ProjectGuid>
+    </PropertyGroup>
+    <PropertyGroup>
+        <AssemblyName>nexus-aidisabler</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="AIDisablerPlugin.cs"/>
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>..\References\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="BepInEx, Version=5.4.19.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>..\References\BepInEx.dll</HintPath>
+        </Reference>
+        <Reference Include="Comfort, Version=1.0.0.4, Culture=neutral, PublicKeyToken=null">
+            <HintPath>..\References\Comfort.dll</HintPath>
+        </Reference>
+        <Reference Include="ConfigurationManager, Version=16.4.1.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>..\References\ConfigurationManager.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>..\References\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="copy &quot;$(TargetPath)&quot; &quot;C:\Battlestate Games\SPT\BepInEx\plugins\nexus\$(TargetFileName)&quot;"/>
+    </Target>
+</Project>
