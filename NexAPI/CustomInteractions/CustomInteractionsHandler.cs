@@ -11,17 +11,22 @@ namespace Nexus.NexAPI.CustomInteractions {
 		public abstract IEnumerable<Type> AffectedTypes { get; }
 
 		public virtual Boolean AffectsHideout {
-			get { return true; }
+			get {
+				return true;
+			}
 		}
 
 		public virtual Boolean AffectsRaid {
-			get { return true; }
+			get {
+				return true;
+			}
 		}
 
 		/// <summary>
 		///     Will need to cast owner to HideoutPlayerOwner manually
 		///     <param name="interactive">Can be null, if so then that means we are no longer looking at it</param>
 		/// </summary>
-		public abstract GClass2304 GetInteractions(GClass2304 __result, GamePlayerOwner owner, [CanBeNull] GInterface73 interactive);
+		public abstract GClass2388 GetInteractions(GClass2388 __result, GamePlayerOwner owner,
+			[CanBeNull] GInterface79 interactive);
 	}
 }

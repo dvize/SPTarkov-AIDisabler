@@ -20,7 +20,8 @@ namespace Nexus.SPTMod.ArrowMenu {
 
 		public void Update() {
 			Optional<IEnumerable<Player>>? optional = null;
-			if (Singleton<GameWorld>.Instantiated && (this._players = Singleton<GameWorld>.Instance.RegisteredPlayers) != null && this._players.Count != 0) {
+			if (Singleton<GameWorld>.Instantiated &&
+				(this._players = Singleton<GameWorld>.Instance.RegisteredPlayers) != null && this._players.Count != 0) {
 				if (Input.GetKeyDown(KeyCode.DownArrow)) {
 					this._index++;
 				}
@@ -53,7 +54,8 @@ namespace Nexus.SPTMod.ArrowMenu {
 				}
 
 				if (Input.GetKeyDown(KeyCode.Return)) {
-					IEnumerable<Player> result = this._ids.Count > 0 ? this._players.Where(p => this._ids.Contains(p.Id)) : null;
+					IEnumerable<Player> result =
+						this._ids.Count > 0 ? this._players.Where(p => this._ids.Contains(p.Id)) : null;
 					optional = new Optional<IEnumerable<Player>>(result);
 				}
 
@@ -86,7 +88,8 @@ namespace Nexus.SPTMod.ArrowMenu {
 				Player player = this._players[i];
 				Int32 id = player.Id;
 				GUI.color = i == this._index ? Color.green : Color.red;
-				GUILayout.Label($"[{(this._ids.Contains(id) ? "-" : "+")}] {id}: {player.Profile.Nickname.Localized()}");
+				GUILayout.Label(
+					$"[{(this._ids.Contains(id) ? "-" : "+")}] {id}: {player.Profile.Nickname.Localized()}");
 			}
 		}
 	}

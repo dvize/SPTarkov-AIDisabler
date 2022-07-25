@@ -22,7 +22,7 @@ namespace Nexus.SPTMod.Patches {
 			transform.localPosition = new Vector3(0f, 1.1f, 0f);
 			transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 			SpriteRenderer image = gameObject.AddComponent<SpriteRenderer>();
-			image.sprite = GClass716.Load<Sprite>("spirit");
+			image.sprite = GClass738.Load<Sprite>("spirit");
 			gameObject.AddComponent<PrimitiveBillboard>();
 			image.color = new Color(1f, 1f, 1f, 0.3f);
 			image.DOFade(0f, 3f);

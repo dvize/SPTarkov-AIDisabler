@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using BepInEx;
 using BepInEx.Configuration;
 using Comfort.Common;
@@ -14,28 +13,41 @@ namespace Nexus.AIDisabler {
 
 		private void Awake() {
 			this.Logger.LogInfo("Loading: AIDisabler");
-			this._configRange = this.Config.Bind("General", "Range", 100f, "All AI outside of this range will be disabled");
+			this._configRange =
+				this.Config.Bind("General", "Range", 100f, "All AI outside of this range will be disabled");
 			this.Logger.LogInfo("Loaded: AIDisabler");
 		}
 
 		private void FixedUpdate() {
-			if (Singleton<GameWorld>.Instantiated) {
-				if (this._mainCameraTransform != null) {
-					if (Singleton<GameWorld>.Instance.RegisteredPlayers.Count > 1) {
-						Vector3 cameraPosition = this._mainCameraTransform.position;
-						foreach (Player player in Singleton<GameWorld>.Instance.RegisteredPlayers.Where(player => !player.IsYourPlayer)) {
-							player.enabled = Vector3.Distance(cameraPosition, player.Position) <= this._configRange.Value;
+			if (!Singleton<GameWorld>.Instantiated) {
+				return;
+			}
+
+			if (this._mainCameraTransform == null) {
+				Camera camera = Camera.main;
+				if (camera != null) {
+					this._mainCameraTransform = camera.transform;
+				}
+
+				return;
+			}
+
+			Vector3 cameraPosition = this._mainCameraTransform.position;
+			foreach (Player player in Singleton<GameWorld>.Instance.RegisteredPlayers) {
+				if (!player.IsYourPlayer && player.AIData != null && player.AIData.BotOwner != null) {
+					if (Vector3.Distance(cameraPosition, player.Position) <= this._configRange.Value) {
+						if (player.AIData.BotOwner.BotState == EBotState.NonActive) {
+							player.AIData.BotOwner.Brain.Activate();
 						}
 					}
-				}
-				else {
-					if (GClass1687.Instance.Camera != null) {
-						this._mainCameraTransform = GClass1687.Instance.Camera.transform;
+					else {
+						if (player.AIData.BotOwner.BotState == EBotState.Active) {
+							player.AIData.BotOwner.Brain.Deactivate();
+						}
 					}
+
+					// player.enabled = Vector3.Distance(cameraPosition, player.Position) <= this._configRange.Value;
 				}
-			}
-			else {
-				this._mainCameraTransform = null;
 			}
 		}
 	}

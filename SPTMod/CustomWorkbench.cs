@@ -8,40 +8,58 @@ using Nexus.NexAPI.CustomInteractions;
 
 namespace Nexus.SPTMod {
 	public class CustomWorkbench : CustomInteractionsHandler {
-		public override IEnumerable<Type> AffectedTypes { get; } = new[] {typeof(GInterface132)};
+		public override IEnumerable<Type> AffectedTypes { get; } = new[] {typeof(GInterface137)};
 
 		public override Boolean AffectsRaid {
-			get { return false; }
+			get {
+				return false;
+			}
 		}
 
-		public override GClass2304 GetInteractions(GClass2304 __result, GamePlayerOwner owner, GInterface73 interactive) {
-			if (!(interactive is GInterface132 GInterface132) || !GInterface132.Area.Data.IsInstalled) {
+		public override GClass2388
+			GetInteractions(GClass2388 __result, GamePlayerOwner owner, GInterface79 interactive) {
+			if (!(interactive is GInterface137 ginterface137) || !ginterface137.Area.Data.IsInstalled) {
 				return __result;
 			}
 
-			if (GInterface132.Area.Data.Template.Type == EAreaType.Workbench && (owner as HideoutPlayerOwner).AvailableForInteractions) {
-				Slot pistolSlot = owner.Player.GetInventoryController().Inventory.Equipment.GetSlot(EquipmentSlot.Holster);
-				if (pistolSlot != null) {
-					Item pistol = pistolSlot.ContainedItem;
-					if (pistol != null) {
-						__result.Actions.Add(new GClass2303 {Name = $"MOD {pistol.LocalizedShortName()}", Action = () => { ItemUiContext.Instance.ModWeapon(pistol); }});
-					}
-				}
+			if (ginterface137.Area.Data.Template.Type != EAreaType.Workbench ||
+				!((HideoutPlayerOwner)owner).AvailableForInteractions) {
+				return __result;
+			}
 
-				Slot primarySlot = owner.Player.GetInventoryController().Inventory.Equipment.GetSlot(EquipmentSlot.FirstPrimaryWeapon);
-				if (primarySlot != null) {
-					Item primary = primarySlot.ContainedItem;
-					if (primary != null) {
-						__result.Actions.Add(new GClass2303 {Name = $"MOD {primary.LocalizedShortName()}", Action = () => { ItemUiContext.Instance.ModWeapon(primary); }});
+			Slot pistolSlot = owner.Player.GetInventoryController().Inventory.Equipment.GetSlot(EquipmentSlot.Holster);
+			Item pistol = pistolSlot?.ContainedItem;
+			if (pistol != null) {
+				__result.Actions.Add(new GClass2387 {
+					Name = $"MOD {pistol.LocalizedShortName()}",
+					Action = () => {
+						ItemUiContext.Instance.ModWeapon(pistol);
 					}
-				}
-				Slot secondarySlot = owner.Player.GetInventoryController().Inventory.Equipment.GetSlot(EquipmentSlot.SecondPrimaryWeapon);
-				if (secondarySlot != null) {
-					Item secondary = secondarySlot.ContainedItem;
-					if (secondary != null) {
-						__result.Actions.Add(new GClass2303 {Name = $"MOD {secondary.LocalizedShortName()}", Action = () => { ItemUiContext.Instance.ModWeapon(secondary); }});
+				});
+			}
+
+			Slot primarySlot = owner.Player.GetInventoryController().Inventory.Equipment
+				.GetSlot(EquipmentSlot.FirstPrimaryWeapon);
+			Item primary = primarySlot?.ContainedItem;
+			if (primary != null) {
+				__result.Actions.Add(new GClass2387 {
+					Name = $"MOD {primary.LocalizedShortName()}",
+					Action = () => {
+						ItemUiContext.Instance.ModWeapon(primary);
 					}
-				}
+				});
+			}
+
+			Slot secondarySlot = owner.Player.GetInventoryController().Inventory.Equipment
+				.GetSlot(EquipmentSlot.SecondPrimaryWeapon);
+			Item secondary = secondarySlot?.ContainedItem;
+			if (secondary != null) {
+				__result.Actions.Add(new GClass2387 {
+					Name = $"MOD {secondary.LocalizedShortName()}",
+					Action = () => {
+						ItemUiContext.Instance.ModWeapon(secondary);
+					}
+				});
 			}
 
 			return __result;

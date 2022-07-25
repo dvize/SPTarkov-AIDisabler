@@ -32,6 +32,9 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="0Harmony">
+          <HintPath>..\References\0Harmony.dll</HintPath>
+        </Reference>
         <Reference Include="Aki.Reflection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>..\References\Aki.Reflection.dll</HintPath>
         </Reference>
@@ -42,34 +45,22 @@
             <HintPath>..\References\BepInEx.dll</HintPath>
         </Reference>
         <Reference Include="bsg.console.core">
-          <HintPath>..\References\bsg.console.core.dll</HintPath>
+            <HintPath>..\References\bsg.console.core.dll</HintPath>
         </Reference>
         <Reference Include="Comfort, Version=1.0.0.4, Culture=neutral, PublicKeyToken=null">
             <HintPath>..\References\Comfort.dll</HintPath>
         </Reference>
-        <Reference Include="Comfort.Unity, Version=1.0.0.4, Culture=neutral, PublicKeyToken=null">
-            <HintPath>..\References\Comfort.Unity.dll</HintPath>
-        </Reference>
         <Reference Include="ConfigurationManager, Version=16.4.1.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>..\References\ConfigurationManager.dll</HintPath>
         </Reference>
-        <Reference Include="DissonanceVoip, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>..\References\DissonanceVoip.dll</HintPath>
-        </Reference>
         <Reference Include="DOTween">
-          <HintPath>..\References\DOTween.dll</HintPath>
+            <HintPath>..\References\DOTween.dll</HintPath>
         </Reference>
         <Reference Include="DOTween.Modules">
-          <HintPath>..\References\DOTween.Modules.dll</HintPath>
-        </Reference>
-        <Reference Include="ItemComponent.Types">
-          <HintPath>..\References\ItemComponent.Types.dll</HintPath>
-        </Reference>
-        <Reference Include="Newtonsoft.Json">
-            <HintPath>..\References\Newtonsoft.Json.dll</HintPath>
+            <HintPath>..\References\DOTween.Modules.dll</HintPath>
         </Reference>
         <Reference Include="Sirenix.Serialization">
-          <HintPath>..\References\Sirenix.Serialization.dll</HintPath>
+            <HintPath>..\References\Sirenix.Serialization.dll</HintPath>
         </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
@@ -78,14 +69,8 @@
         <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>..\References\UnityEngine.dll</HintPath>
         </Reference>
-        <Reference Include="UnityEngine.AIModule">
-          <HintPath>..\References\UnityEngine.AIModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.AssetBundleModule">
-            <HintPath>..\References\UnityEngine.AssetBundleModule.dll</HintPath>
-        </Reference>
         <Reference Include="UnityEngine.AudioModule">
-          <HintPath>..\References\UnityEngine.AudioModule.dll</HintPath>
+            <HintPath>..\References\UnityEngine.AudioModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
@@ -97,29 +82,25 @@
             <HintPath>..\References\UnityEngine.InputLegacyModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.ParticleSystemModule">
-          <HintPath>..\References\UnityEngine.ParticleSystemModule.dll</HintPath>
+            <HintPath>..\References\UnityEngine.ParticleSystemModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.Physics2DModule">
-          <HintPath>..\References\UnityEngine.Physics2DModule.dll</HintPath>
+            <HintPath>..\References\UnityEngine.Physics2DModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>..\References\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
-        <Reference Include="UnityEngine.TerrainModule">
-            <HintPath>..\References\UnityEngine.TerrainModule.dll</HintPath>
-        </Reference>
         <Reference Include="UnityEngine.UI">
-          <HintPath>..\References\UnityEngine.UI.dll</HintPath>
+            <HintPath>..\References\UnityEngine.UI.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.UIModule">
-          <HintPath>..\References\UnityEngine.UIModule.dll</HintPath>
+            <HintPath>..\References\UnityEngine.UIModule.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="ArrowMenu\BaseArrowMenu.cs" />
         <Compile Include="ArrowMenu\MultiSelectArrowMenu.cs" />
         <Compile Include="ArrowMenu\SingleSelectArrowMenu.cs" />
-        <Compile Include="FollowPlayer.cs" />
         <Compile Include="Patches\ContextMenuWhileSearchingPatch.cs" />
         <Compile Include="Patches\InfiniteAmmoPatch.cs" />
         <Compile Include="Patches\NoTargetPatch.cs" />
@@ -129,7 +110,6 @@
         <Compile Include="DebugRimuru.cs" />
         <Compile Include="CustomShootingRange.cs" />
         <Compile Include="HideoutTargetController.cs" />
-        <Compile Include="Patches\RestoreOldFreeLookPatch.cs" />
         <Compile Include="SPTModPlugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

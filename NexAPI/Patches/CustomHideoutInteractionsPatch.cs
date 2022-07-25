@@ -8,16 +8,18 @@ using Nexus.NexAPI.CustomInteractions;
 
 namespace Nexus.NexAPI.Patches {
 	public class CustomHideoutInteractionsPatch : ModulePatch {
-		private static List<CustomInteractionsHandler> _handlers = new List<CustomInteractionsHandler>();
-
 		protected override MethodBase GetTargetMethod() {
-			return typeof(GClass1543).GetMethod(nameof(GClass1543.GetAvailableHideoutActions), BindingFlags.Public | BindingFlags.Static);
+			return typeof(GClass1614).GetMethod(nameof(GClass1614.GetAvailableHideoutActions),
+				BindingFlags.Public | BindingFlags.Static);
 		}
 
 		[PatchPostfix]
-		private static void Postfix(ref GClass2304 __result, HideoutPlayerOwner owner, [CanBeNull] GInterface73 interactive) {
-			if (NexAPIPlugin.Instance.CustomInteractionsHandlerManager.TryGetHandlers(interactive?.GetType(), true, _handlers)) {
-				__result = _handlers.Aggregate(__result, (current, handler) => handler.GetInteractions(current, owner, interactive));
+		private static void Postfix(ref GClass2388 __result, HideoutPlayerOwner owner,
+			[CanBeNull] GInterface79 interactive) {
+			if (NexAPIPlugin.Instance.CustomInteractionsHandlerManager.TryGetHandlers(interactive?.GetType(), true,
+					out List<CustomInteractionsHandler> handlers)) {
+				__result = handlers.Aggregate(__result,
+					(current, handler) => handler.GetInteractions(current, owner, interactive));
 			}
 		}
 	}

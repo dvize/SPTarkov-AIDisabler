@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Nexus.NexAPI.CustomInteractions {
 	public class CustomInteractionsHandlerManager {
-		private List<CustomInteractionsHandler> _registeredHandlers = new List<CustomInteractionsHandler>();
+		private readonly List<CustomInteractionsHandler> _registeredHandlers = new List<CustomInteractionsHandler>();
 
 		public void RegisterHandler(CustomInteractionsHandler handler) {
 			if (!this._registeredHandlers.Contains(handler)) {
@@ -12,14 +12,8 @@ namespace Nexus.NexAPI.CustomInteractions {
 			}
 		}
 
-		public Boolean TryGetHandlers(Type type, Boolean isHideout, List<CustomInteractionsHandler> handlers) {
-			if (handlers == null) {
-				handlers = new List<CustomInteractionsHandler>();
-			}
-			else {
-				handlers.Clear();
-			}
-
+		public Boolean TryGetHandlers(Type type, Boolean isHideout, out List<CustomInteractionsHandler> handlers) {
+			handlers = new List<CustomInteractionsHandler>();
 			foreach (CustomInteractionsHandler handler in this._registeredHandlers) {
 				if (handler.AffectsHideout && isHideout && handler.AffectedTypes.Any(t => t.IsAssignableFrom(type))) {
 					handlers.Add(handler);

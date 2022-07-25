@@ -8,20 +8,22 @@ using Nexus.NexAPI.CustomInteractions;
 
 namespace Nexus.NexAPI.Patches {
 	public class CustomInteractionsPatch : ModulePatch {
-		private static List<CustomInteractionsHandler> _handlers = new List<CustomInteractionsHandler>();
-
 		protected override MethodBase GetTargetMethod() {
-			return typeof(GClass1543).GetMethod(nameof(GClass1543.GetAvailableActions), BindingFlags.Public | BindingFlags.Static);
+			return typeof(GClass1614).GetMethod(nameof(GClass1614.GetAvailableActions),
+				BindingFlags.Public | BindingFlags.Static);
 		}
 
 		[PatchPostfix]
-		private static void Postfix(ref GClass2304 __result, GamePlayerOwner owner, [CanBeNull] GInterface73 interactive) {
+		private static void Postfix(ref GClass2388 __result, GamePlayerOwner owner,
+			[CanBeNull] GInterface79 interactive) {
 			if (interactive == null) {
 				return;
 			}
 
-			if (NexAPIPlugin.Instance.CustomInteractionsHandlerManager.TryGetHandlers(interactive.GetType(), false, _handlers)) {
-				__result = _handlers.Aggregate(__result, (current, handler) => handler.GetInteractions(current, owner, interactive));
+			if (NexAPIPlugin.Instance.CustomInteractionsHandlerManager.TryGetHandlers(interactive.GetType(), false,
+					out List<CustomInteractionsHandler> handlers)) {
+				__result = handlers.Aggregate(__result,
+					(current, handler) => handler.GetInteractions(current, owner, interactive));
 			}
 		}
 	}

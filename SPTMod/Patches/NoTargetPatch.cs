@@ -7,15 +7,19 @@ namespace Nexus.SPTMod.Patches {
 		public static Boolean NoTargetActive { get; set; }
 
 		protected override MethodBase GetTargetMethod() {
-			return typeof(GClass296).GetMethod(nameof(GClass296.FindDangerEnemy), BindingFlags.Public | BindingFlags.Instance);
+			return typeof(GClass313).GetMethod(nameof(GClass313.FindDangerEnemy),
+				BindingFlags.Public | BindingFlags.Instance);
 		}
 
 		[PatchPostfix]
-		private static void Postfix(ref GClass421 __result) {
-			if (NoTargetActive && __result != null) {
-				if (__result.Person.GetPlayer.IsYourPlayer) {
-					__result = null;
-				}
+		private static void Postfix(ref GClass442 __result) {
+			if (!NoTargetActive || __result == null) {
+				return;
+			}
+
+			if (__result.Person != null && __result.Person.GetPlayer != null &&
+				__result.Person.GetPlayer.IsYourPlayer) {
+				__result = null;
 			}
 		}
 	}

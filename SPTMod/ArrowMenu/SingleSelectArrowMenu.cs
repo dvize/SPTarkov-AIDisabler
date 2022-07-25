@@ -18,7 +18,8 @@ namespace Nexus.SPTMod.ArrowMenu {
 
 		public void Update() {
 			Optional<Player>? optional = null;
-			if (Singleton<GameWorld>.Instantiated && (this._players = Singleton<GameWorld>.Instance.RegisteredPlayers) != null && this._players.Count != 0) {
+			if (Singleton<GameWorld>.Instantiated &&
+				(this._players = Singleton<GameWorld>.Instance.RegisteredPlayers) != null && this._players.Count != 0) {
 				if (Input.GetKeyDown(KeyCode.DownArrow)) {
 					this._index++;
 				}

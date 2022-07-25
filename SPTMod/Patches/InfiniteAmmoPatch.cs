@@ -14,28 +14,30 @@ namespace Nexus.SPTMod.Patches {
 		}
 
 		[PatchPostfix]
-		private static void Postfix(GClass2286 shot) {
-			if (SPTModPlugin.Instance.InfiniteAmmo.Value && shot.Player.IsYourPlayer && shot.Weapon is Weapon weapon) {
-				if (weapon.IsMultiBarrel) {
-					Slot emptySlot = weapon.Chambers.FirstOrDefault(slot => slot.ContainedItem == null);
-					if (emptySlot != null) {
-						emptySlot.Add(Utils.CreateItem<Item>(shot.Ammo.TemplateId) ?? shot.Ammo);
-					}
+		private static void Postfix(GClass2370 shot) {
+			if (!SPTModPlugin.Instance.InfiniteAmmo.Value || !shot.Player.IsYourPlayer ||
+				!(shot.Weapon is Weapon weapon)) {
+				return;
+			}
+
+			if (weapon.IsMultiBarrel) {
+				weapon.Chambers.FirstOrDefault(slot => slot.ContainedItem == null)
+					?.Add(Utils.CreateItem<Item>(shot.Ammo.TemplateId) ?? shot.Ammo);
+			}
+			else {
+				MagazineClass magazine = weapon.GetCurrentMagazine();
+				if (magazine == null) {
+					return;
 				}
-				else if (weapon is GClass2050 gClass2050) {
-					
+
+				if (magazine.Cartridges == null || magazine.Cartridges.Count == 0) {
+					(shot.Player.HandsController as Player.FirearmController)?.ReloadRevolverDrum(
+						new GClass1943(new List<BulletClass> {
+							(Utils.CreateItem<Item>(shot.Ammo.TemplateId) ?? shot.Ammo) as BulletClass
+						}), null);
 				}
 				else {
-					GClass2023 magazine = weapon.GetCurrentMagazine();
-					if (magazine != null) {
-						if (magazine.Cartridges == null || magazine.Cartridges.Count == 0) {
-							(shot.Player.HandsController as Player.FirearmController).ReloadRevolverDrum(
-							new GClass1860(new List<BulletClass> {(Utils.CreateItem<Item>(shot.Ammo.TemplateId) ?? shot.Ammo) as BulletClass}), null);
-						}
-						else {
-							magazine.Cartridges?.Add(Utils.CreateItem<Item>(shot.Ammo.TemplateId) ?? shot.Ammo, false);
-						}
-					}
+					magazine.Cartridges?.Add(Utils.CreateItem<Item>(shot.Ammo.TemplateId) ?? shot.Ammo, false);
 				}
 			}
 		}

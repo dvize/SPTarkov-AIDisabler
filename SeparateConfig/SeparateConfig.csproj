@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -33,30 +33,30 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Assembly-CSharp">
-          <HintPath>..\References\Assembly-CSharp.dll</HintPath>
+            <HintPath>..\References\Assembly-CSharp.dll</HintPath>
         </Reference>
         <Reference Include="BepInEx">
-          <HintPath>..\References\BepInEx.dll</HintPath>
+            <HintPath>..\References\BepInEx.dll</HintPath>
         </Reference>
         <Reference Include="Comfort">
-          <HintPath>..\References\Comfort.dll</HintPath>
+            <HintPath>..\References\Comfort.dll</HintPath>
         </Reference>
-        <Reference Include="System" />
-        <Reference Include="System.Core" />
-        <Reference Include="System.Data" />
-        <Reference Include="System.Xml" />
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+        <Reference Include="System.Data"/>
+        <Reference Include="System.Xml"/>
         <Reference Include="UnityEngine">
-          <HintPath>..\References\UnityEngine.dll</HintPath>
+            <HintPath>..\References\UnityEngine.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-          <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
+            <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="SeparateConfigPlugin.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="SeparateConfigPlugin.cs"/>
+        <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <Exec Command="copy &quot;$(TargetPath)&quot; &quot;C:\Battlestate Games\SPT\BepInEx\plugins\nexus\$(TargetFileName)&quot;"/>
     </Target>

@@ -56,7 +56,7 @@ namespace Nexus.NexAPI {
 
 		public override Int32 GetHashCode() {
 			unchecked {
-				return EqualityComparer<T>.Default.GetHashCode(this._value) * 397 ^ this.HasValue.GetHashCode();
+				return (EqualityComparer<T>.Default.GetHashCode(this._value) * 397) ^ this.HasValue.GetHashCode();
 			}
 		}
 
