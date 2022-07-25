@@ -34,19 +34,8 @@ namespace Nexus.AIDisabler {
 
 			Vector3 cameraPosition = this._mainCameraTransform.position;
 			foreach (Player player in Singleton<GameWorld>.Instance.RegisteredPlayers) {
-				if (!player.IsYourPlayer && player.AIData != null && player.AIData.BotOwner != null) {
-					if (Vector3.Distance(cameraPosition, player.Position) <= this._configRange.Value) {
-						if (player.AIData.BotOwner.BotState == EBotState.NonActive) {
-							player.AIData.BotOwner.Brain.Activate();
-						}
-					}
-					else {
-						if (player.AIData.BotOwner.BotState == EBotState.Active) {
-							player.AIData.BotOwner.Brain.Deactivate();
-						}
-					}
-
-					// player.enabled = Vector3.Distance(cameraPosition, player.Position) <= this._configRange.Value;
+				if (!player.IsYourPlayer) {
+					player.enabled = Vector3.Distance(cameraPosition, player.Position) <= this._configRange.Value;
 				}
 			}
 		}
