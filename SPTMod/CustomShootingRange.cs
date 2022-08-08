@@ -31,7 +31,8 @@ namespace Nexus.SPTMod {
 
 		public override GClass2388
 			GetInteractions(GClass2388 __result, GamePlayerOwner owner, GInterface79 interactive) {
-			if (interactive == null) {
+			if (!(interactive is GInterface137 ginterface137) || ginterface137.Area == null || ginterface137.Area.Data == null ||
+				ginterface137.Area.Data.Template.Type != EAreaType.ShootingRange) {
 				return __result;
 			}
 
@@ -44,12 +45,6 @@ namespace Nexus.SPTMod {
 				if (!this.TargetController.IsInitialized) {
 					return __result;
 				}
-			}
-
-			if (!(interactive is GInterface137 ginterface137) ||
-				ginterface137.Area.Data.Template.Type != EAreaType.ShootingRange ||
-				!((HideoutPlayerOwner)owner).AvailableForInteractions) {
-				return __result;
 			}
 
 			GClass2387 switchCommand = null;

@@ -18,12 +18,9 @@ namespace Nexus.SPTMod {
 
 		public override GClass2388
 			GetInteractions(GClass2388 __result, GamePlayerOwner owner, GInterface79 interactive) {
-			if (!(interactive is GInterface137 ginterface137) || !ginterface137.Area.Data.IsInstalled) {
-				return __result;
-			}
-
-			if (ginterface137.Area.Data.Template.Type != EAreaType.Workbench ||
-				!((HideoutPlayerOwner)owner).AvailableForInteractions) {
+			if (!(interactive is GInterface137 ginterface137) || ginterface137.Area == null ||
+				ginterface137.Area.Data == null || !ginterface137.Area.Data.IsInstalled ||
+				ginterface137.Area.Data.Template.Type != EAreaType.Workbench) {
 				return __result;
 			}
 
@@ -61,6 +58,13 @@ namespace Nexus.SPTMod {
 					}
 				});
 			}
+
+			__result.Actions.Add(new GClass2387 {
+				Name = "CREATE PRESET",
+				Action = () => {
+					ItemUiContext.Instance.EditBuild(null);
+				}
+			});
 
 			return __result;
 		}

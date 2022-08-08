@@ -34,18 +34,16 @@ namespace Nexus.SPTMod {
 		}
 
 		public void Initialize() {
-			if (this.IsInitialized) {
-				return;
-			}
-
 			this._firstTarget = GameObject.Find("metal_target")?.transform;
 			this._secondTarget = GameObject.Find("metal_target (1)")?.transform;
 			this._thirdTarget = GameObject.Find("metal_target (2)")?.transform;
-			if (this._firstTarget != null && this._secondTarget != null && this._thirdTarget != null) {
-				this._firstTarget.Find("Effect Object Appearance")?.gameObject.SetActive(true);
-				this._secondTarget.Find("Effect Object Appearance")?.gameObject.SetActive(true);
-				this._thirdTarget.Find("Effect Object Appearance")?.gameObject.SetActive(true);
+			if (this._firstTarget == null || this._secondTarget == null || this._thirdTarget == null) {
+				return;
 			}
+
+			this._firstTarget.Find("Effect Object Appearance")?.gameObject.SetActive(true);
+			this._secondTarget.Find("Effect Object Appearance")?.gameObject.SetActive(true);
+			this._thirdTarget.Find("Effect Object Appearance")?.gameObject.SetActive(true);
 		}
 
 		public Transform[] GetTargetGameObjects(Int32 targetIndex) {

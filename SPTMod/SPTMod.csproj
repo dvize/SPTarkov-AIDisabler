@@ -35,6 +35,9 @@
         <Reference Include="0Harmony">
           <HintPath>..\References\0Harmony.dll</HintPath>
         </Reference>
+        <Reference Include="Aki.Common">
+          <HintPath>..\References\Aki.Common.dll</HintPath>
+        </Reference>
         <Reference Include="Aki.Reflection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>..\References\Aki.Reflection.dll</HintPath>
         </Reference>
@@ -50,6 +53,9 @@
         <Reference Include="Comfort, Version=1.0.0.4, Culture=neutral, PublicKeyToken=null">
             <HintPath>..\References\Comfort.dll</HintPath>
         </Reference>
+        <Reference Include="Comfort.Unity">
+          <HintPath>..\References\Comfort.Unity.dll</HintPath>
+        </Reference>
         <Reference Include="ConfigurationManager, Version=16.4.1.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>..\References\ConfigurationManager.dll</HintPath>
         </Reference>
@@ -59,6 +65,15 @@
         <Reference Include="DOTween.Modules">
             <HintPath>..\References\DOTween.Modules.dll</HintPath>
         </Reference>
+        <Reference Include="ItemComponent.Types">
+          <HintPath>..\References\ItemComponent.Types.dll</HintPath>
+        </Reference>
+        <Reference Include="ItemTemplate.Types">
+          <HintPath>..\References\ItemTemplate.Types.dll</HintPath>
+        </Reference>
+        <Reference Include="Newtonsoft.Json">
+          <HintPath>..\References\Newtonsoft.Json.dll</HintPath>
+        </Reference>
         <Reference Include="Sirenix.Serialization">
             <HintPath>..\References\Sirenix.Serialization.dll</HintPath>
         </Reference>
@@ -66,6 +81,9 @@
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
+        <Reference Include="Unity.TextMeshPro">
+          <HintPath>..\References\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
         <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>..\References\UnityEngine.dll</HintPath>
         </Reference>
@@ -101,10 +119,23 @@
         <Compile Include="ArrowMenu\BaseArrowMenu.cs" />
         <Compile Include="ArrowMenu\MultiSelectArrowMenu.cs" />
         <Compile Include="ArrowMenu\SingleSelectArrowMenu.cs" />
+        <Compile Include="CustomGenerator.cs" />
+        <Compile Include="CustomIntelligenceCenter.cs" />
+        <Compile Include="CustomSecurityDoor.cs" />
+        <Compile Include="DoorState.cs" />
+        <Compile Include="HideoutBuild.cs" />
+        <Compile Include="Patches\EnterHideoutPatch.cs" />
         <Compile Include="Patches\ContextMenuWhileSearchingPatch.cs" />
         <Compile Include="Patches\InfiniteAmmoPatch.cs" />
+        <Compile Include="Patches\MenuTaskBarPatch.cs" />
+        <Compile Include="Patches\RemoveTradingToggles.cs" />
+        <Compile Include="Patches\SaveDoorStatePatch.cs" />
+        <Compile Include="Patches\StraightToHideoutPatch.cs" />
         <Compile Include="Patches\NoTargetPatch.cs" />
         <Compile Include="Patches\DeathMarkerPatch.cs" />
+        <Compile Include="Patches\NeuterHideoutControls.cs" />
+        <Compile Include="Patches\RagfairWindowBuyAll.cs" />
+        <Compile Include="Patches\LoadDoorStatePatch.cs" />
         <Compile Include="Patches\RemoveConsoleBackgroundPatch.cs" />
         <Compile Include="CustomWorkbench.cs" />
         <Compile Include="DebugRimuru.cs" />

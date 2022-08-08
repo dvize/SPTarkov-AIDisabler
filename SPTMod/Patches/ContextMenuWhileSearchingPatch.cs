@@ -12,7 +12,7 @@ namespace Nexus.SPTMod.Patches {
 
 		[PatchPrefix]
 		private static Boolean Prefix(ItemUiContext __instance, GClass2244 itemContext, Vector2 position) {
-			Boolean isEnabled = SPTModPlugin.Instance.InspectWhileSearching.Value;
+			Boolean isEnabled = SPTModPlugin.Instance.ContextWhileSearching.Value;
 			if (isEnabled) {
 				__instance.ContextMenu.Show(position, __instance.GetItemContextInteractions(itemContext, null), null,
 					itemContext.Item);
